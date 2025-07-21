@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Friday, July 11, 14:41:37 2025
+Created on Friday, July 11, 18:09:58 2025
 
 @author: Krishna Sah Kanu
 """
@@ -34,7 +34,7 @@ def tab1():
     st.write(ticker)
     
     #The code below gets the quota table from Yahoo Finance. The streamlit page
-    #is divided into 2 columns, and selected columns are displayed on each side of the page.
+    #is divided into 2 columns and selected columns are displayed on each side of the page.
 
     def getsummary(ticker):
             table = si.get_quote_table(ticker, dict_result = False)
@@ -63,7 +63,7 @@ def tab1():
     #The code below uses the yahoofinance package to get all the available stock
     #price data. Plotly is then used to visualize the data.  An interesting feature
     #from plotly called range selector is also used. A list of dictionaries
-    #is added to the range selector to make buttons and identify the periods.
+    #is added to range selector to make buttons and identify the periods.
     #References:
     #https://plotly.com/python/range-slider/
     
@@ -105,8 +105,8 @@ def tab1():
 
 
 #The code below divides the streamlit page into 5 columns. The first two columns
-#have a date picker option to select start and end dates and the other three
-# have dropdown selection boxes for duration, interval, and type of plot.
+#have a date picker option to select start and end dates and the the other three
+#have dropdown selection boxes for duration, interval, and type of plot.
 
 def tab2():
     st.title("Chart")
@@ -137,12 +137,12 @@ def tab2():
         plot = st.selectbox("Select Plot", ['Line', 'Candle'])
         
  
-#The code below first obtains all the data using the download option from Yahoo Finance.
+#The code below first obtains all the data using the download option from yahoo finance.
 #It then creates a column for the simple moving average, makes the date index into a column
-#, and then subsets the dataframe to get just the date and SMA column.
-#Then, if a duration is selected from the dropdown, data for that duration is downloaded
-# and the SMA column is merged to the dataframe. If a duration is not selected, then
-#automatically the specified date range is used to get the data,a and that is also merged
+#and then subsets the dataframe to get just the date and and SMA column.
+#Then if a duration is selected from the dropdown, data for that duration is downloaded
+# and the SMA column is merged to the dataframe. If a duration is not selected then
+#automatically the specified date range is used to get the data and that is also merged
 #with the SMA column
 #References:
 #https://towardsdatascience.com/data-science-in-finance-56a4d99279f7
@@ -167,9 +167,9 @@ def tab2():
             chartdata2 = chartdata2.merge(SMA, on='Date', how='left')                             
             return chartdata2
     
-#The code below uses plotly to visualize the data. Subplots from plotly are used to make 2 y axes.
-#First y axis shows the stock close price and SMA, and the second is used to show volume. 
-#Plotly graph objects are used to add graphs to the axes. The range for the y-axis for 
+#The code below uses plotly to visualize the data. Subplots from plotly is used to make 2 y axis.
+#First y axis shows the stock close price and SMA and the second is used to show volume. 
+#Plotly graph objects are used to add graphs to the axes.The range for the y axis for 
 #volume is manipulated so that the bars appear small.
 #References:
 #https://plotly.com/python/multiple-axes/   
@@ -426,7 +426,7 @@ def tab5():
 # Tab 6 Monte Carlo Simulation
 #==============================================================================
 
-#The code below performs and displays the Monte Carlo simulation for a specified
+#The code below performs and displays the monte carlo simulation for a specified
 #time horizon and number of intervals
 
 
@@ -439,8 +439,8 @@ def tab6():
      simulations = st.selectbox("Number of Simulations (n)", [200, 500, 1000])
      time_horizon = st.selectbox("Time Horizon (t)", [30, 60, 90])
      
-     #The code below takes past 30-day data using get_data. Then it gets the close
-     #price column and uses pct_change () to get the daily return. Daily volatility 
+     #The code below takes past 30 day data using get_data. Then it gets the close
+     #price column and uses .pct_change() to get the daily return. Daily volatility 
      #is then calculated as the standard deviation of the daily return.
      @st.cache
      def montecarlo(ticker, time_horizon, simulations):
@@ -483,9 +483,9 @@ def tab6():
                 
          return simulation_df   
           
-#The code below plots the Monte Carlo simulation using matplotlib. It also calculates
-#variance at risk and displays it. The VAR is calculated using the last row of
-#the montecarlo simulation. The distribution of this ending price is displayed and
+#The code below plots the monte carlo simulation using maplotlib. It also calculates
+#variance at risk and displays it. the VAR is calculated using the last row of
+#the montecarlo simulation. the distribution of this ending price is displaued and
 #the 5th percentile of the distribution is marked
 
 
@@ -538,9 +538,9 @@ def tab6():
 # Tab 7 Your Portfolio's Trend
 #==============================================================================
 
-#The code below uses a multiselect box to allow the user to select multiple tickers.
+#The code below uses a multiselect box to allow user to select multiple tickers.
 #Then a new dataframe is created with each ticker as a column. A for loop is used to
-#populate each column with the close price of that ticker. Then, plotly is used to 
+#populate each column with the close price of that ticker. Then plotly is used to 
 #visualize the trend of the selected portfolio
 #Reference:
 #https://blog.quantinsti.com/stock-market-data-analysis-python/
